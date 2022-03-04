@@ -23,44 +23,28 @@ module.exports = function () {
   app.post("/split-payments/compute", (req, res) => {
     const payload = req.body;
 
-    const id = payload["ID"];
-    let data = myCache.get(id);
-    if (data) {
-      console.log("Retrieved value from cache !!");
+    // Validate payload
+    let payloadError = validatePayload(payload);
 
-      // Serve response from cache using
-      // myCache.get(key)
-      sendSuccess(res, data);
-    } else {
-      // Validate payload
-      let payloadError = validatePayload(payload);
-
-      // Throw error the payload validation returns an error
-      if (payloadError !== null) {
-        // throw new Error(payloadError);
-        return sendError(res, payloadError, 400);
-      }
-
-      // Calculates split computation
-      // returns a response object if successful
-      // returns an error
-      const computation = splitComputation(payload);
-
-      // if the return type of the computation value is string
-      // There was an error. Throw error
-      if (typeof computation === "string") {
-        // throw new Error(computation);
-        return sendError(res, computation, 400);
-      }
-
-      // res.send({
-      //   ID: 0,
-      //   Balance: "",
-      //   SplitBreakdown: "",
-      // });
-      myCache.set(id, computation, 10000);
-      return sendSuccess(res, computation);
+    // Throw error the payload validation returns an error
+    if (payloadError !== null) {
+      // throw new Error(payloadError);
+      return sendError(res, payloadError, 400);
     }
+
+    // Calculates split computation
+    // returns a response object if successful
+    // returns an error
+    const computation = splitComputation(payload);
+
+    // if the return type of the computation value is string
+    // There was an error. Throw error
+    if (typeof computation === "string") {
+      // throw new Error(computation);
+      return sendError(res, computation, 400);
+    }
+
+    return sendSuccess(res, computation);
   });
 
   return app;
