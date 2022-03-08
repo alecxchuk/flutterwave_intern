@@ -21,7 +21,7 @@ describe("split-computation", () => {
       expect(
         splitComputation({
           ID: 13092,
-          Amount: 4500,
+          Amount: "4500",
           Currency: "NGN",
           CustomerEmail: "anon8@customers.io",
           SplitInfo: [
@@ -75,11 +75,11 @@ describe("split-computation", () => {
           },
           {
             SplitEntityId: "LNPYACC0215",
-            Amount: 155.2,
+            Amount: 155.20000000000002,
           },
           {
             SplitEntityId: "LNPYACC0011",
-            Amount: 838.08,
+            Amount: 838.0799999999999,
           },
           {
             SplitEntityId: "LNPYACC0016",

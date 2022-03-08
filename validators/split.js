@@ -7,7 +7,7 @@ const {
 } = require("../utils/response_messages");
 
 function splitComputation(payload) {
-  let transactionAmount = (balance = payload["Amount"]);
+  let transactionAmount = (balance = parseFloat(payload["Amount"]));
   //   Transcation id
   const id = payload["ID"];
 
