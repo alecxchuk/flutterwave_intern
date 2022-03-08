@@ -1,4 +1,3 @@
-const { sampleResponse } = require("../tests/test_helpers");
 const {
   zeroBalanceError,
   greaterSplitError,

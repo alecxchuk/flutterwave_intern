@@ -5,12 +5,8 @@ const {
 } = require("../utils/response_messages");
 const splitComputation = require("../validators/split");
 const {
-  testPayload,
-  sampleResponse,
   faultySplitType,
-  tooMuchSplitType,
   nonZeroBalanceCheck,
-  nonZeroResponse,
   splitGreaterAmount,
   splitLessZero,
 } = require("./test_helpers");
@@ -102,10 +98,6 @@ describe("split-computation", () => {
     test("return error if split amount computed is less than zero", () => {
       expect(splitComputation(splitLessZero)).toBe(splitLessThanZeroError);
     });
-    // test("return error if total split amount computed is greater than transactiono amount", () => {
-    //   expect(splitComputation(totalSplitMoreThanAmount)).toBe(
-    //     splitLessThanZeroError
-    //   );
-    // });
+
   });
 });

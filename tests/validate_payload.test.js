@@ -8,7 +8,6 @@ const {
   testPayload,
   payloadProps,
   splitProps,
-  noSplitInfo,
   tooMuchSplitType,
 } = require("./test_helpers");
 
