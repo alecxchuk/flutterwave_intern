@@ -1,6 +1,4 @@
 const makeApp = require("./app");
-// const db = require("./db/db_helper");
-// const validatePayload = require("./validators/validators");
 require("dotenv").config();
 
 const app = makeApp();

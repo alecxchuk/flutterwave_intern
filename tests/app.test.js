@@ -2,10 +2,7 @@ const request = require("supertest");
 const makeApp = require("../app");
 const { testPayload, resProps, splitLessZero } = require("./test_helpers");
 
-// mock function using jest
-// const set = jest.fn();
-
-const app = makeApp({});
+const app = makeApp();
 
 describe("/split-payments/compute", () => {
   beforeEach(() => {
@@ -72,23 +69,5 @@ describe("/split-payments/compute", () => {
         .send(splitLessZero);
       expect(response.statusCode).toBe(400);
     });
-
-    // test("should specify json in the content type header", async () => {
-    //   const response = await request(app)
-    //     .post("/split-payments/compute")
-    //     .send(testPayload);
-    //   expect(response.headers["content-type"]).toEqual(
-    //     expect.stringContaining("json")
-    //   );
-    // });
-
-    // for (let prop of resProps) {
-    //   test(`response has ${prop}`, async () => {
-    //     const response = await request(app)
-    //       .post("/split-payments/compute")
-    //       .send(testPayload);
-    //     expect(response.body[prop]).toBeDefined();
-    //   });
-    // }
   });
 });
